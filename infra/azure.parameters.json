@@ -3,13 +3,43 @@
   "contentVersion": "1.0.0.0",
   "parameters": {
     "resourceBaseName": {
-      "value": "bot${{RESOURCE_SUFFIX}}"
+      "value": "raksha${{RESOURCE_SUFFIX}}"
     },
-    "webAppSKU": {
+    "webAppSku": {
       "value": "B1"
     },
     "botDisplayName": {
       "value": "raksha-bot"
+    },
+    "openAILocation": {
+      "value": "eastus"
+    },
+    "openAIModelName": {
+      "value": "gpt-4o-mini"
+    },
+    "openAIModelVersion": {
+      "value": "2024-07-18"
+    },
+    "openAIDeploymentName": {
+      "value": "gpt-4o-mini"
+    },
+    "openAICapacity": {
+      "value": 30
+    },
+    "cosmosDatabaseName": {
+      "value": "raksha-db"
+    },
+    "graphClientId": {
+      "value": "${{GRAPH_CLIENT_ID}}"
+    },
+    "graphClientSecret": {
+      "value": "${{SECRET_GRAPH_CLIENT_SECRET}}"
+    },
+    "graphTenantId": {
+      "value": "${{GRAPH_TENANT_ID}}"
+    },
+    "graphSenderEmail": {
+      "value": "${{GRAPH_SENDER_EMAIL}}"
     }
   }
 }
