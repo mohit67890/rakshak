@@ -77,7 +77,7 @@ Current priorities from the roadmap:
 
 ## Reporting Security Issues
 
-If you find a security vulnerability — especially anything related to complaint data exposure, auth bypass, or encryption — please **do not** open a public issue. Email **security@mohitbuild.in** directly. We treat these with the highest urgency.
+If you find a security vulnerability — especially anything related to complaint data exposure, auth bypass, or encryption — please **do not** open a public issue. Email **mohit@datapuls.ai** directly. We treat these with the highest urgency.
 
 ## License
 
@@ -86,5 +86,5 @@ By contributing, you agree that your contributions will be licensed under the [M
 ---
 
 <p align="center">
-  <sub>Questions? Reach out at <a href="mailto:hello@mohitbuild.in">hello@mohitbuild.in</a></sub>
+  <sub>Questions? Reach out at <a href="mailto:mohit@datapuls.ai">mohit@datapuls.ai</a></sub>
 </p>

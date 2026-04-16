@@ -2,7 +2,7 @@
     "name": "rakshak",
     "version": "1.0.0",
     "description": "Rakshak — AI-Powered POSH Workplace Safety Bot for Microsoft Teams",
-    "author": "Mohit Build",
+    "author": "Mohit Garg <mohit@datapuls.ai>",
     "license": "MIT",
     "main": "./dist/index.js",
     "scripts": {

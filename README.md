@@ -73,7 +73,7 @@ Rakshak is designed for the most sensitive data an organisation handles — hara
 | **Scope-based API access** | Employees see only their own complaints. ICC members see only their tenant's complaints. Enforced at every API endpoint. |
 | **DPDPA 2023 ready** | Consent collection, purpose limitation, data minimization, and right to erasure are implemented ahead of the May 2027 enforcement date. |
 
-> **Reporting security issues:** If you find a vulnerability — especially related to complaint data exposure, auth bypass, or encryption — please **do not** open a public issue. Email **security@mohitbuild.in** directly. We treat these with the highest urgency.
+> **Reporting security issues:** If you find a vulnerability — especially related to complaint data exposure, auth bypass, or encryption — please **do not** open a public issue. Email **mohit@datapuls.ai** directly. We treat these with the highest urgency.
 
 ## Who Is Rakshak For?
 
@@ -406,5 +406,5 @@ This is open-source software built for Indian workplaces. Contributions — espe
 
 <p align="center">
   <sub>Built with quiet determination for the people who needed it and didn't have the tools.</sub><br>
-  <sub>Made by <a href="https://mohitbuild.in">Mohit Build</a> • <a href="mailto:hello@mohitbuild.in">hello@mohitbuild.in</a></sub>
+  <sub>Made by <strong>Mohit Garg</strong> · <a href="mailto:mohit@datapuls.ai">mohit@datapuls.ai</a> · <a href="https://x.com/mohitt_garg">𝕏</a> · <a href="https://www.linkedin.com/in/mohitga/">LinkedIn</a></sub>
 </p>
