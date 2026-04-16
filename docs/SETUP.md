@@ -19,7 +19,7 @@ You need an Azure subscription with the following resources provisioned:
 
 | Resource | SKU | Notes |
 |---|---|---|
-| **Azure OpenAI** | Standard | Deploy a `gpt-4o` model |
+| **Azure OpenAI** | Standard | Deploy a `gpt-5.4-mini` model |
 | **Azure Cosmos DB** | Serverless (NoSQL) | Core SQL API |
 | **Azure Blob Storage** | Standard LRS | For evidence file uploads |
 | **Azure Bot Service** | (Provisioned by Agents Toolkit) | Multi-tenant bot registration |
@@ -71,7 +71,7 @@ APP_NAME_SUFFIX=(local)
 # Azure OpenAI
 AZURE_OPENAI_ENDPOINT=https://your-resource.openai.azure.com/
 AZURE_OPENAI_API_KEY=your-key-here
-AZURE_OPENAI_DEPLOYMENT_NAME=gpt-4o
+AZURE_OPENAI_DEPLOYMENT_NAME=gpt-5.4-mini
 
 # Cosmos DB
 COSMOS_ENDPOINT=https://your-cosmos.documents.azure.com:443/
@@ -279,5 +279,5 @@ cd scripts && node setup-cosmos.mjs
 ### LLM not responding
 
 - Verify your Azure OpenAI endpoint, key, and deployment name
-- Check that the deployment is a GPT-4o model (not GPT-3.5)
+- Check that the deployment is a GPT-5.4-mini model
 - Check the bot server logs for OpenAI API errors

@@ -129,7 +129,7 @@ See [docs/ESCALATION.md](docs/ESCALATION.md) for the complete technical breakdow
 | **API** | Azure Functions (Node.js, TypeScript, v4 programming model) |
 | **Orchestration** | Azure Durable Functions v3 (stateful complaint lifecycle workflows) |
 | **Database** | Azure Cosmos DB (NoSQL) |
-| **LLM** | Azure OpenAI (GPT-4o) via OpenAI SDK — Responses API with `store: true` |
+| **LLM** | Azure OpenAI (GPT-5.4-mini) via OpenAI SDK — Responses API with `store: true` |
 | **Storage** | Azure Blob Storage (evidence files) |
 | **Tab Frontend** | React 18 + Tailwind CSS v4 + Fluent UI v9 + Framer Motion |
 | **Notifications** | Microsoft Graph API (email) + Bot proactive messaging + Teams Activity Feed |
@@ -143,7 +143,7 @@ See [docs/ESCALATION.md](docs/ESCALATION.md) for the complete technical breakdow
 - [Node.js](https://nodejs.org/) 20 or 22
 - [Microsoft 365 Agents Toolkit](https://aka.ms/teams-toolkit) VS Code extension
 - An Azure subscription with:
-  - Azure OpenAI resource (GPT-4o deployed)
+  - Azure OpenAI resource (GPT-5.4-mini deployed)
   - Azure Cosmos DB account
   - Azure Blob Storage account
 - A Microsoft 365 developer tenant (or sandbox)
@@ -174,7 +174,7 @@ Required variables:
 |---|---|
 | `AZURE_OPENAI_ENDPOINT` | Your Azure OpenAI endpoint URL |
 | `AZURE_OPENAI_API_KEY` | Azure OpenAI API key |
-| `AZURE_OPENAI_DEPLOYMENT_NAME` | GPT-4o deployment name |
+| `AZURE_OPENAI_DEPLOYMENT_NAME` | GPT-5.4-mini deployment name |
 | `COSMOS_ENDPOINT` | Cosmos DB endpoint URL |
 | `COSMOS_KEY` | Cosmos DB primary key |
 | `COSMOS_DATABASE` | Database name (default: `raksha-db`) |
@@ -259,7 +259,7 @@ See [docs/SETUP.md](docs/SETUP.md) for the detailed setup guide.
 │                    Azure Services                    │
 │  ┌──────────┐  ┌──────────┐  ┌───────────────────┐  │
 │  │ Cosmos DB│  │ Blob     │  │ Azure OpenAI      │  │
-│  │ 6 contrs │  │ Storage  │  │ GPT-4o            │  │
+│  │ 6 contrs │  │ Storage  │  │ GPT-5.4-mini      │  │
 │  └──────────┘  └──────────┘  └───────────────────┘  │
 │  ┌──────────────────────────────────────────────┐    │
 │  │ Graph API (email) + Bot Framework (proactive)│    │

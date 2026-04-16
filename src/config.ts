@@ -19,7 +19,7 @@ const config = {
   azureOpenAI: {
     baseURL: process.env.AZURE_OPENAI_ENDPOINT || "",
     apiKey: process.env.AZURE_OPENAI_API_KEY || "",
-    deploymentName: process.env.AZURE_OPENAI_DEPLOYMENT_NAME || "gpt-4o",
+    deploymentName: process.env.AZURE_OPENAI_DEPLOYMENT_NAME || "gpt-5.4-mini",
   },
 
   // Cosmos DB (Step 2)
