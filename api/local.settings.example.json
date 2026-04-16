@@ -1,0 +1,18 @@
+{
+  "IsEncrypted": false,
+  "Values": {
+    "AzureWebJobsStorage": "UseDevelopmentStorage=true",
+    "FUNCTIONS_WORKER_RUNTIME": "node",
+    "COSMOS_ENDPOINT": "https://your-cosmos-account.documents.azure.com:443/",
+    "COSMOS_KEY": "your-cosmos-db-primary-key",
+    "COSMOS_DATABASE": "raksha-db",
+    "STORAGE_CONNECTION_STRING": "UseDevelopmentStorage=true",
+    "STORAGE_CONTAINER_COMPLAINTS": "raksha-storage",
+    "GRAPH_CLIENT_ID": "your-graph-app-client-id",
+    "GRAPH_CLIENT_SECRET": "your-graph-app-client-secret",
+    "GRAPH_TENANT_ID": "your-azure-ad-tenant-id",
+    "GRAPH_SENDER_EMAIL": "noreply@yourdomain.onmicrosoft.com",
+    "DEFAULT_ACKNOWLEDGE_DEADLINE_DAYS": "7",
+    "DEFAULT_INQUIRY_DEADLINE_DAYS": "90"
+  }
+}

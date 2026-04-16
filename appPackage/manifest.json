@@ -1,0 +1,94 @@
+{
+    "$schema": "https://developer.microsoft.com/en-us/json-schemas/teams/v1.25/MicrosoftTeams.schema.json",
+    "manifestVersion": "1.25",
+    "version": "1.0.0",
+    "id": "${{TEAMS_APP_ID}}",
+    "developer": {
+        "name": "Mohit Build",
+        "websiteUrl": "https://github.com/mohit67890/rakshak",
+        "privacyUrl": "https://github.com/mohit67890/rakshak/blob/main/PRIVACY.md",
+        "termsOfUseUrl": "https://github.com/mohit67890/rakshak/blob/main/TERMS.md"
+    },
+    "icons": {
+        "color": "color.png",
+        "outline": "outline.png"
+    },
+    "name": {
+        "short": "Rakshak${{APP_NAME_SUFFIX}}",
+        "full": "Rakshak — AI-Powered POSH Workplace Safety Bot for Microsoft Teams"
+    },
+    "description": {
+        "short": "Report workplace harassment confidentially through empathetic AI conversations. POSH Act compliant.",
+        "full": "Rakshak (रक्षक — \"protector\" in Sanskrit) is an AI-powered workplace safety bot for Microsoft Teams that empowers employees to report harassment through empathetic, guided conversations — not cold web forms or compromised HR email IDs.\n\n**What Rakshak does:**\n• Guides employees through confidential, AI-powered complaint intake conversations\n• Auto-generates legally structured complaints under the POSH Act, 2013\n• Routes complaints directly to the Internal Complaints Committee (ICC)\n• Escalates automatically if the ICC fails to acknowledge or act — a built-in dead man's switch that goes to the Audit Committee and District Officer\n• Tracks complaint lifecycle with real-time status updates\n• Detects criminal threshold (BNS Sections 74–79) and flags for law enforcement referral\n• Supports evidence upload — screenshots, emails, documents\n• Generates data for mandatory Board annual report disclosures (Companies Rules 2025)\n\n**Legal compliance built in:**\n• Sexual Harassment of Women at Workplace (Prevention, Prohibition and Redressal) Act, 2013\n• Bharatiya Nyaya Sanhita, 2023 — Sections 74–79\n• Companies (Accounts) Second Amendment Rules, 2025\n• Companies Act, 2013 — Section 177(9-10) vigil mechanism\n• Digital Personal Data Protection Act, 2023\n\n**Why Rakshak exists:** In the TCS Nashik case (2026), 8 women were harassed for 4 years while the HR head suppressed complaints. Existing POSH tools digitize the process for the ICC but leave employees with the same broken reporting channels. Rakshak puts the power on the employee side.\n\nBecause complaints shouldn't need courage."
+    },
+    "accentColor": "#C4864A",
+    "bots": [
+        {
+            "botId": "${{BOT_ID}}",
+            "scopes": [
+                "personal"
+            ],
+            "supportsFiles": true,
+            "isNotificationOnly": false,
+            "commandLists": [
+                {
+                  "scopes": ["personal"],
+                  "commands": [
+                      {
+                          "title": "Hi",
+                          "description": "Start a conversation with Rakshak — your workplace safety companion."
+                      },
+                      {
+                          "title": "Status",
+                          "description": "Check the status of your complaint or pending actions."
+                      },
+                      {
+                          "title": "Help",
+                          "description": "Learn about your rights under the POSH Act, 2013."
+                      }
+                  ]
+                }
+            ]
+        }
+    ],
+    "composeExtensions": [],
+    "configurableTabs": [],
+    "staticTabs": [
+        {
+            "entityId": "rakshak",
+            "name": "Dashboard",
+            "contentUrl": "${{BOT_ENDPOINT}}/tab/#/",
+            "scopes": ["personal"]
+        }
+    ],
+    "permissions": [
+        "identity",
+        "messageTeamMembers"
+    ],
+    "validDomains": [
+        "${{BOT_DOMAIN}}"
+    ],
+    "webApplicationInfo": {
+        "id": "${{BOT_ID}}",
+        "resource": "api://botid-${{BOT_ID}}"
+    },
+    "activities": {
+        "activityTypes": [
+            {
+                "type": "complaintUpdate",
+                "description": "Your complaint status has been updated by the ICC",
+                "templateText": "{statusUpdate}"
+            },
+            {
+                "type": "escalationAlert",
+                "description": "Your complaint has been escalated due to inaction",
+                "templateText": "{escalationMessage}"
+            },
+            {
+                "type": "deadlineReminder",
+                "description": "Inquiry deadline approaching — action required",
+                "templateText": "{reminderMessage}"
+            }
+        ]
+    }
+}

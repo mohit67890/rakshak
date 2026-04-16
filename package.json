@@ -1,0 +1,44 @@
+{
+    "name": "rakshak",
+    "version": "1.0.0",
+    "description": "Rakshak — AI-Powered POSH Workplace Safety Bot for Microsoft Teams",
+    "author": "Mohit Build",
+    "license": "MIT",
+    "main": "./dist/index.js",
+    "scripts": {
+        "dev:teamsfx": "env-cmd --silent -f .localConfigs npm run dev",
+        "dev:teamsfx:playground": "env-cmd --silent -f .localConfigs.playground npm run dev",
+        "dev:teamsfx:launch-playground": "env-cmd --silent -f env/.env.playground agentsplayground start",
+        "dev": "nodemon --exec node --inspect=9239 --signal SIGINT -r ts-node/register ./index.ts",
+        "build": "cd tab && npm run build && cd .. && tsc --build",
+        "build:tab": "cd tab && npm run build",
+        "start": "node ./dist/index.js",
+        "watch": "nodemon --exec \"npm run start\"",
+        "test": "vitest run",
+        "test:watch": "vitest"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com"
+    },
+    "dependencies": {
+        "@azure/cosmos": "^4.2.0",
+        "@azure/identity": "^4.11.1",
+        "@azure/storage-blob": "^12.26.0",
+        "@microsoft/teams.apps": "^2.0.0",
+        "@microsoft/teams.common": "^2.0.0",
+        "openai": "^4.85.0",
+        "uuid": "^11.1.0"
+    },
+    "devDependencies": {
+        "@types/node": "^20.0.0",
+        "@types/uuid": "^10.0.0",
+        "dotenv": "^17.4.2",
+        "env-cmd": "^10.1.0",
+        "nodemon": "^3.1.7",
+        "sharp": "^0.34.5",
+        "ts-node": "^10.4.0",
+        "typescript": "~5.8.3",
+        "vitest": "^4.1.4"
+    }
+}

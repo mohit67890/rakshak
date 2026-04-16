@@ -1,0 +1,285 @@
+{
+  "$schema": "./orchestration.schema.json",
+
+  "acknowledgement": {
+    "deadlineDays": 7,
+    "description": "Days ICC has to acknowledge a new complaint before escalation begins"
+  },
+
+  "escalation": {
+    "enabled": true,
+    "levels": [
+      {
+        "level": 0,
+        "name": "ICC Reminder",
+        "description": "Remind ICC that acknowledgement deadline was missed",
+        "waitDaysAfterPrevious": 0,
+        "action": "remind_icc",
+        "notifications": ["icc_reminder"]
+      },
+      {
+        "level": 1,
+        "name": "Audit Committee",
+        "description": "Escalate to Audit Committee when ICC fails to act",
+        "waitDaysAfterPrevious": 3,
+        "action": "escalate",
+        "notifications": ["escalated_audit_committee", "complainant_escalated_audit"]
+      },
+      {
+        "level": 2,
+        "name": "District Officer",
+        "description": "Escalate to District Officer / Nodal Officer when Audit Committee fails",
+        "waitDaysAfterPrevious": 7,
+        "action": "escalate",
+        "notifications": ["escalated_district_officer", "complainant_escalated_district"]
+      }
+    ]
+  },
+
+  "inquiry": {
+    "deadlineDays": 90,
+    "reminders": [
+      { "dayOffset": 60, "notification": "icc_inquiry_reminder", "urgency": "normal" },
+      { "dayOffset": 75, "notification": "icc_inquiry_reminder", "urgency": "normal" },
+      { "dayOffset": 85, "notification": "icc_inquiry_urgent", "urgency": "high" },
+      { "dayOffset": 89, "notification": "icc_inquiry_final", "urgency": "critical" }
+    ],
+    "onBreach": {
+      "notifications": ["complainant_inquiry_breached", "escalated_audit_committee"]
+    },
+    "description": "POSH Act mandates 90-day inquiry completion"
+  },
+
+  "orchestration": {
+    "startTimeoutMs": 10000,
+    "dailyCheckCron": "0 0 9 * * *",
+    "description": "API call timeout and daily safety-net cron for checking all pending complaints"
+  },
+
+  "notifications": {
+    "channels": {
+      "email": {
+        "enabled": true,
+        "senderDisplayName": "Rakshak — Workplace Safety",
+        "description": "Email via Microsoft Graph API"
+      },
+      "bot": {
+        "enabled": true,
+        "description": "Proactive bot message in Teams personal chat"
+      },
+      "teams_activity": {
+        "enabled": false,
+        "description": "Activity feed notification via Graph API TeamsActivity.Send — shows in Teams Activity bell"
+      }
+    },
+
+    "definitions": {
+      "complaint_submitted": {
+        "description": "Complaint has been submitted by employee",
+        "recipients": [
+          { "audience": "icc_presiding_officer", "channel": "email" },
+          { "audience": "icc_all_members", "channel": "email" },
+          { "audience": "complainant", "channel": "bot" }
+        ],
+        "templates": {
+          "icc_presiding_officer": {
+            "subject": "[Rakshak] New POSH Complaint: {{complaintNumber}}",
+            "body": "A new POSH complaint ({{complaintNumber}}) has been submitted and assigned to the ICC.\n\nCategory: {{category}}\nSeverity: {{severity}}\nCriminal Threshold: {{criminalThreshold}}\n\nPlease acknowledge within {{deadlineDays}} days. Failure to acknowledge will trigger automatic escalation.\n\nView details in the Rakshak ICC Dashboard."
+          },
+          "icc_all_members": {
+            "subject": "[Rakshak] New POSH Complaint: {{complaintNumber}}",
+            "body": "A new POSH complaint ({{complaintNumber}}) has been filed. The Presiding Officer has been notified. Please coordinate with the ICC for timely acknowledgement.\n\nDeadline to acknowledge: {{deadlineDate}}"
+          },
+          "complainant": {
+            "message": "Your complaint has been submitted successfully.\n\n**Complaint ID:** {{complaintNumber}}\n**Status:** Submitted\n\nThe Internal Complaints Committee has been notified and must acknowledge within {{deadlineDays}} days. You can check the status anytime by messaging me or opening the Rakshak tab."
+          }
+        }
+      },
+
+      "complaint_acknowledged": {
+        "description": "ICC has acknowledged the complaint",
+        "recipients": [
+          { "audience": "complainant", "channel": "bot" }
+        ],
+        "templates": {
+          "complainant": {
+            "message": "Your complaint ({{complaintNumber}}) has been acknowledged by the Internal Complaints Committee. An inquiry will now begin and must be completed within {{inquiryDeadlineDays}} days."
+          }
+        }
+      },
+
+      "icc_reminder": {
+        "description": "ICC failed to acknowledge within deadline — reminder",
+        "recipients": [
+          { "audience": "icc_presiding_officer", "channel": "email" },
+          { "audience": "icc_all_members", "channel": "email" }
+        ],
+        "templates": {
+          "icc_presiding_officer": {
+            "subject": "[Rakshak] OVERDUE: Complaint {{complaintNumber}} — Acknowledgement Deadline Missed",
+            "body": "Complaint {{complaintNumber}} has NOT been acknowledged. The deadline was {{deadlineDate}}.\n\nThis is an automated reminder. If no action is taken within {{escalationWaitDays}} days, the complaint will be automatically escalated to the Audit Committee.\n\nPlease act immediately."
+          },
+          "icc_all_members": {
+            "subject": "[Rakshak] OVERDUE: Complaint {{complaintNumber}} — Acknowledgement Deadline Missed",
+            "body": "Complaint {{complaintNumber}} has not been acknowledged and the deadline ({{deadlineDate}}) has passed. Please coordinate with the Presiding Officer to take immediate action."
+          }
+        }
+      },
+
+      "escalated_audit_committee": {
+        "description": "Escalated to Audit Committee due to ICC inaction",
+        "recipients": [
+          { "audience": "escalation_contacts_level_1", "channel": "email" },
+          { "audience": "icc_presiding_officer", "channel": "email" }
+        ],
+        "templates": {
+          "escalation_contacts_level_1": {
+            "subject": "[Rakshak] ESCALATION: POSH Complaint {{complaintNumber}} — ICC Failed to Act",
+            "body": "This is an automated escalation from the Rakshak workplace safety system.\n\nPOSH complaint {{complaintNumber}} was submitted on {{submittedDate}} but the Internal Complaints Committee failed to acknowledge it within the required {{deadlineDays}}-day window.\n\nPer Section 4 of the POSH Act, 2013, the Audit Committee is requested to intervene and ensure the complaint is addressed.\n\nComplaint Summary:\n- Category: {{category}}\n- Severity: {{severity}}\n- Days since submission: {{daysSinceSubmission}}"
+          },
+          "icc_presiding_officer": {
+            "subject": "[Rakshak] NOTICE: Complaint {{complaintNumber}} Escalated to Audit Committee",
+            "body": "Complaint {{complaintNumber}} has been escalated to the Audit Committee because the ICC did not acknowledge within {{deadlineDays}} days. This escalation has been logged in the audit trail."
+          }
+        }
+      },
+
+      "complainant_escalated_audit": {
+        "description": "Notify complainant that complaint was escalated to Audit Committee",
+        "recipients": [
+          { "audience": "complainant", "channel": "bot" }
+        ],
+        "templates": {
+          "complainant": {
+            "message": "Your complaint ({{complaintNumber}}) has been escalated to the **Audit Committee** because the Internal Complaints Committee did not respond within the required {{deadlineDays}}-day timeframe.\n\nThis escalation is automatic and has been logged. The Audit Committee has been notified and is expected to take action."
+          }
+        }
+      },
+
+      "escalated_district_officer": {
+        "description": "Escalated to District Officer due to Audit Committee inaction",
+        "recipients": [
+          { "audience": "escalation_contacts_level_2", "channel": "email" },
+          { "audience": "nodal_officer", "channel": "email" },
+          { "audience": "icc_presiding_officer", "channel": "email" }
+        ],
+        "templates": {
+          "escalation_contacts_level_2": {
+            "subject": "[Rakshak] FINAL ESCALATION: POSH Complaint {{complaintNumber}} — All Internal Authorities Failed to Act",
+            "body": "This is a final automated escalation from the Rakshak workplace safety system.\n\nPOSH complaint {{complaintNumber}} has not been addressed by either the Internal Complaints Committee or the Audit Committee.\n\nTimeline:\n- Submitted: {{submittedDate}}\n- ICC deadline missed: {{deadlineDate}}\n- Escalated to Audit Committee: {{auditEscalationDate}}\n- Audit Committee failed to act\n\nPer Section 6 of the POSH Act, 2013, the District Officer is requested to constitute a Local Complaints Committee or take appropriate action."
+          },
+          "nodal_officer": {
+            "subject": "[Rakshak] FINAL ESCALATION: Complaint {{complaintNumber}} — District Officer Notification",
+            "body": "POSH complaint {{complaintNumber}} has been escalated to the District Officer after failure by both the ICC and Audit Committee. This notification is sent to the Nodal Officer for SHe-Box compliance tracking."
+          },
+          "icc_presiding_officer": {
+            "subject": "[Rakshak] NOTICE: Complaint {{complaintNumber}} Escalated to District Officer",
+            "body": "Complaint {{complaintNumber}} has been escalated to the District Officer. Both the ICC and Audit Committee failed to act within required timeframes. This has been logged."
+          }
+        }
+      },
+
+      "complainant_escalated_district": {
+        "description": "Notify complainant that complaint was escalated to District Officer",
+        "recipients": [
+          { "audience": "complainant", "channel": "bot" }
+        ],
+        "templates": {
+          "complainant": {
+            "message": "Your complaint ({{complaintNumber}}) has been escalated to the **District Officer** as neither the Internal Complaints Committee nor the Audit Committee responded within the required timeframes.\n\nThis is the highest level of automatic escalation. All actions have been logged in a tamper-proof audit trail."
+          }
+        }
+      },
+
+      "icc_inquiry_reminder": {
+        "description": "Periodic reminder to ICC about inquiry deadline",
+        "recipients": [
+          { "audience": "icc_presiding_officer", "channel": "email" }
+        ],
+        "templates": {
+          "icc_presiding_officer": {
+            "subject": "[Rakshak] Inquiry Deadline Reminder: {{daysRemaining}} days remaining — {{complaintNumber}}",
+            "body": "The inquiry for complaint {{complaintNumber}} must be completed within {{daysRemaining}} days (deadline: {{inquiryDeadlineDate}}).\n\nPlease ensure the inquiry is progressing as required under Section 11 of the POSH Act, 2013."
+          }
+        }
+      },
+
+      "icc_inquiry_urgent": {
+        "description": "Urgent reminder — 5 days left for inquiry",
+        "recipients": [
+          { "audience": "icc_presiding_officer", "channel": "email" },
+          { "audience": "icc_all_members", "channel": "email" }
+        ],
+        "templates": {
+          "icc_presiding_officer": {
+            "subject": "[Rakshak] URGENT: Only {{daysRemaining}} days remaining for inquiry — {{complaintNumber}}",
+            "body": "URGENT: Only {{daysRemaining}} days remain to complete the inquiry for complaint {{complaintNumber}}.\n\nDeadline: {{inquiryDeadlineDate}}\n\nFailure to complete within the statutory 90-day window will be logged and may trigger escalation."
+          },
+          "icc_all_members": {
+            "subject": "[Rakshak] URGENT: {{daysRemaining}} days remaining — {{complaintNumber}}",
+            "body": "The inquiry for complaint {{complaintNumber}} has {{daysRemaining}} days remaining. Please coordinate with the Presiding Officer to ensure timely completion."
+          }
+        }
+      },
+
+      "icc_inquiry_final": {
+        "description": "Final day warning for inquiry completion",
+        "recipients": [
+          { "audience": "icc_presiding_officer", "channel": "email" },
+          { "audience": "icc_all_members", "channel": "email" }
+        ],
+        "templates": {
+          "icc_presiding_officer": {
+            "subject": "[Rakshak] FINAL DAY: Inquiry for {{complaintNumber}} must complete TODAY",
+            "body": "TODAY is the final day to complete the inquiry for complaint {{complaintNumber}} per POSH Act Section 11.\n\nIf the inquiry is not marked as completed by end of day, this will be logged as a statutory deadline breach and escalated."
+          },
+          "icc_all_members": {
+            "subject": "[Rakshak] FINAL DAY: Inquiry for {{complaintNumber}} must complete TODAY",
+            "body": "The statutory 90-day inquiry deadline for complaint {{complaintNumber}} expires TODAY. Please ensure resolution is submitted through the Rakshak ICC Dashboard."
+          }
+        }
+      },
+
+      "complainant_inquiry_breached": {
+        "description": "Notify complainant that 90-day inquiry deadline was breached",
+        "recipients": [
+          { "audience": "complainant", "channel": "bot" }
+        ],
+        "templates": {
+          "complainant": {
+            "message": "The **90-day inquiry deadline** for your complaint ({{complaintNumber}}) has passed without resolution.\n\nThis statutory breach has been logged and the matter has been escalated. You have the right to approach the District Officer or file a case directly."
+          }
+        }
+      },
+
+      "complaint_resolved": {
+        "description": "Complaint has been resolved by ICC",
+        "recipients": [
+          { "audience": "complainant", "channel": "bot" }
+        ],
+        "templates": {
+          "complainant": {
+            "message": "Your complaint ({{complaintNumber}}) has been **resolved** by the Internal Complaints Committee.\n\nYou can view the full resolution details in the Rakshak tab. If you are not satisfied with the outcome, you have the right to appeal within 90 days per Section 18 of the POSH Act."
+          }
+        }
+      },
+
+      "criminal_threshold_alert": {
+        "description": "Complaint crosses from POSH (civil) into BNS (criminal) territory",
+        "recipients": [
+          { "audience": "icc_presiding_officer", "channel": "email" },
+          { "audience": "complainant", "channel": "bot" }
+        ],
+        "templates": {
+          "icc_presiding_officer": {
+            "subject": "[Rakshak] CRIMINAL THRESHOLD: Complaint {{complaintNumber}} may involve criminal conduct",
+            "body": "Complaint {{complaintNumber}} has been flagged as potentially crossing from workplace harassment (POSH Act) into criminal conduct under the Bharatiya Nyaya Sanhita, 2023.\n\nApplicable BNS Sections: {{bnsSections}}\n\nPer Section 19(d) of the POSH Act, the employer is obligated to assist the complainant in filing a police complaint if requested. Please review and take appropriate action."
+          },
+          "complainant": {
+            "message": "Based on what you've shared, your complaint ({{complaintNumber}}) may involve conduct that goes beyond workplace harassment into **criminal territory** under the Bharatiya Nyaya Sanhita, 2023 (Sections {{bnsSections}}).\n\nThis has been flagged to the ICC. You also have the right to file a police complaint — the employer is legally required to assist you with this under Section 19 of the POSH Act."
+          }
+        }
+      }
+    }
+  }
+}

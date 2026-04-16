@@ -1,0 +1,26 @@
+{
+  "name": "raksha-api",
+  "version": "1.0.0",
+  "description": "Raksha API — Azure Functions for complaint lifecycle orchestration",
+  "main": "dist/src/index.js",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc -w",
+    "clean": "rm -rf dist",
+    "prestart": "npm run build",
+    "start": "func start"
+  },
+  "dependencies": {
+    "@azure/cosmos": "^4.2.0",
+    "@azure/functions": "^4.6.0",
+    "@azure/identity": "^4.13.1",
+    "@azure/storage-blob": "^12.31.0",
+    "durable-functions": "^3.1.0",
+    "uuid": "^11.1.0"
+  },
+  "devDependencies": {
+    "@types/uuid": "^10.0.0",
+    "azure-functions-core-tools": "^4.0.0",
+    "typescript": "^5.7.0"
+  }
+}

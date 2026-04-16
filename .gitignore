@@ -1,0 +1,48 @@
+# TeamsFx files
+env/.env.*.user
+env/.env.local
+.localConfigs.playground
+.localConfigs
+.notification.localstore.json
+.notification.playgroundstore.json
+appPackage/build
+
+# Environment files with real credentials
+env/.env.dev
+env/.env.playground
+env/.env.sandbox
+
+# Azure Functions local settings (contains secrets)
+api/local.settings.json
+
+# dependencies
+node_modules/
+
+# misc
+.env
+.deployment
+.DS_Store
+
+# build
+lib/
+dist/
+
+# Dev tool directories
+/devTools/
+
+# Azurite local storage emulator
+.azurite/
+
+# IDE / editor
+.vscode/*.log
+
+# Claude / AI agent config (may contain local paths)
+.agents/
+.azurite/
+.claude/
+CLAUDE.md
+Plan.md
+
+# Dev-only test scripts (contain personal email addresses / load local secrets)
+scripts/test-email.ts
+scripts/test-notifications.ts
