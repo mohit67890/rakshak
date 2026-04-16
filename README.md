@@ -37,7 +37,7 @@
 
 ## The Problem
 
-> In the **TCS Nashik case (April 2026)**, 8 women were harassed for 4 years. The HR head suppressed complaints. The ICC never acted. The women eventually went to the police — not because the system worked, but because it didn't.
+> In a widely reported case (2026), multiple women at a major Indian IT company were harassed for years. The HR head suppressed complaints. The ICC never acted. The women eventually went to the police — not because the system worked, but because it didn't.
 
 This isn't an isolated failure. Under the POSH Act (2013), every Indian organisation with 10+ employees must have an Internal Complaints Committee. Most do — on paper. But when complaints go through web forms and email IDs that route to the same HR department that may be compromised, the process fails at the first step.
 
@@ -405,6 +405,6 @@ This is open-source software built for Indian workplaces. Contributions — espe
 ---
 
 <p align="center">
-  <sub>Built with quiet determination for the people who needed it four years ago in Nashik.</sub><br>
+  <sub>Built with quiet determination for the people who needed it and didn't have the tools.</sub><br>
   <sub>Made by <a href="https://mohitbuild.in">Mohit Build</a> • <a href="mailto:hello@mohitbuild.in">hello@mohitbuild.in</a></sub>
 </p>

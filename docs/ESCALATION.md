@@ -10,7 +10,7 @@ This document explains how it works.
 
 ## Why This Matters
 
-In the TCS Nashik case (April 2026), 8 women were harassed for 4 years. The HR head suppressed complaints. The ICC never acted. The system — paper forms, email inboxes, HR portals — relied on the same people who were enabling the harassment.
+In a widely reported case (2026), multiple women at a major Indian IT company were harassed for years. The HR head suppressed complaints. The ICC never acted. The system — paper forms, email inboxes, HR portals — relied on the same people who were enabling the harassment.
 
 Rakshak's dead man's switch makes suppression structurally impossible. The complaint enters an automated pipeline. If the ICC doesn't acknowledge within the legal timeframe, the system escalates without asking anyone's permission.
 
