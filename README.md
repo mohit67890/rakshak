@@ -37,7 +37,7 @@
 
 ## The Problem
 
-> In a widely reported case (2026), multiple women at a major Indian IT company were harassed for years. The HR head suppressed complaints. The ICC never acted. The women eventually went to the police — not because the system worked, but because it didn't.
+> Recent cases in India have shown that even large, well-known organisations can fail their employees when internal reporting channels are compromised. Complaints get suppressed, ICCs don't act, and employees are left without recourse — until they go to the police or the press.
 
 This isn't an isolated failure. Under the POSH Act (2013), every Indian organisation with 10+ employees must have an Internal Complaints Committee. Most do — on paper. But when complaints go through web forms and email IDs that route to the same HR department that may be compromised, the process fails at the first step.
 

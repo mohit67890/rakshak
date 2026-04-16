@@ -10,7 +10,7 @@ This document explains how it works.
 
 ## Why This Matters
 
-In a widely reported case (2026), multiple women at a major Indian IT company were harassed for years. The HR head suppressed complaints. The ICC never acted. The system — paper forms, email inboxes, HR portals — relied on the same people who were enabling the harassment.
+Recent cases in India have shown that even large, well-known organisations can fail their employees when internal reporting channels are compromised. Complaints get suppressed, ICCs don't act, and the system — paper forms, email inboxes, HR portals — relies on the same people who may be enabling the problem.
 
 Rakshak's dead man's switch makes suppression structurally impossible. The complaint enters an automated pipeline. If the ICC doesn't acknowledge within the legal timeframe, the system escalates without asking anyone's permission.
 
