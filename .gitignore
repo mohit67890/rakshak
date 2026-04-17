@@ -45,4 +45,4 @@ Plan.md
 
 # Dev-only test scripts (contain personal email addresses / load local secrets)
 scripts/test-email.ts
-scripts/test-notifications.ts
+scripts/test-notifications.tslaunch-video/
