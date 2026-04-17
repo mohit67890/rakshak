@@ -1,0 +1,196 @@
+<template id="act2b-switch-template">
+  <div data-composition-id="act2b-switch" data-start="0" data-duration="6" data-width="1920" data-height="1080">
+    <div class="scene-content">
+      <!-- Horizontal timeline rule -->
+      <div class="axis-wrap">
+        <div class="axis" id="s2b-axis"></div>
+
+        <!-- Four checkpoint nodes -->
+        <div class="checkpoint" id="s2b-cp-0" style="left: 0%">
+          <div class="glow"></div>
+          <div class="node"></div>
+          <div class="label">
+            <div class="day">Day 0</div>
+            <div class="role">SUBMITTED</div>
+          </div>
+        </div>
+
+        <div class="checkpoint" id="s2b-cp-7" style="left: 33.33%">
+          <div class="glow"></div>
+          <div class="node"></div>
+          <div class="label">
+            <div class="day">Day 7</div>
+            <div class="role">ICC</div>
+          </div>
+        </div>
+
+        <div class="checkpoint" id="s2b-cp-10" style="left: 66.66%">
+          <div class="glow"></div>
+          <div class="node"></div>
+          <div class="label">
+            <div class="day">Day 10</div>
+            <div class="role">AUDIT COMMITTEE</div>
+          </div>
+        </div>
+
+        <div class="checkpoint" id="s2b-cp-17" style="left: 100%">
+          <div class="glow"></div>
+          <div class="node"></div>
+          <div class="label">
+            <div class="day">Day 17</div>
+            <div class="role">DISTRICT OFFICER</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tagline" id="s2b-tagline">
+        If no one acts, the system does.
+      </div>
+    </div>
+
+    <style>
+      [data-composition-id="act2b-switch"] {
+        width: 100%;
+        height: 100%;
+        background: #0b0b0e;
+        color: #f5f1ea;
+        font-family: "Inter", sans-serif;
+        position: relative;
+      }
+      [data-composition-id="act2b-switch"] .scene-content {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        padding: 180px 200px;
+        box-sizing: border-box;
+      }
+      [data-composition-id="act2b-switch"] .axis-wrap {
+        position: absolute;
+        top: 46%;
+        left: 260px;
+        right: 260px;
+        height: 2px;
+        transform: translateY(-50%);
+      }
+      [data-composition-id="act2b-switch"] .axis {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 2px;
+        background: #8a5428;
+        transform-origin: left center;
+      }
+      [data-composition-id="act2b-switch"] .checkpoint {
+        position: absolute;
+        top: 50%;
+        transform: translate(-50%, -50%);
+      }
+      [data-composition-id="act2b-switch"] .glow {
+        position: absolute;
+        width: 160px;
+        height: 160px;
+        top: -80px;
+        left: -80px;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(232,144,74,0.55) 0%, rgba(232,144,74,0) 70%);
+        opacity: 0;
+        pointer-events: none;
+      }
+      [data-composition-id="act2b-switch"] .node {
+        position: relative;
+        width: 20px;
+        height: 20px;
+        margin-top: -10px;
+        margin-left: -10px;
+        border-radius: 50%;
+        background: #e8904a;
+        box-shadow: 0 0 0 4px #0b0b0e;
+        opacity: 0;
+      }
+      [data-composition-id="act2b-switch"] .label {
+        position: absolute;
+        top: 40px;
+        left: 50%;
+        transform: translateX(-50%);
+        text-align: center;
+        white-space: nowrap;
+        opacity: 0;
+      }
+      [data-composition-id="act2b-switch"] .label .day {
+        font-family: "JetBrains Mono", ui-monospace, monospace;
+        font-size: 24px;
+        font-weight: 400;
+        letter-spacing: 0.12em;
+        color: #e8904a;
+        margin-bottom: 8px;
+      }
+      [data-composition-id="act2b-switch"] .label .role {
+        font-family: "Inter", sans-serif;
+        font-size: 22px;
+        font-weight: 600;
+        letter-spacing: 0.14em;
+        color: #f5f1ea;
+      }
+      [data-composition-id="act2b-switch"] .tagline {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 200px;
+        text-align: center;
+        font-family: "Fraunces", serif;
+        font-weight: 500;
+        font-size: 68px;
+        letter-spacing: -0.015em;
+        color: #f5f1ea;
+        line-height: 1.15;
+      }
+    </style>
+
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <script>
+      window.__timelines = window.__timelines || {};
+      (function () {
+        const tl = gsap.timeline({ paused: true });
+
+        // Axis draws in from left
+        tl.from("#s2b-axis", { scaleX: 0, duration: 0.9, ease: "power3.out" }, 0.3);
+
+        // Ignite each checkpoint: node pops, glow blooms, label rises
+        const ignite = (id, t) => {
+          tl.to(`${id} .node`, { opacity: 1, duration: 0.25, ease: "power2.out" }, t);
+          tl.fromTo(
+            `${id} .node`,
+            { scale: 0.2 },
+            { scale: 1, duration: 0.4, ease: "power3.out" },
+            t,
+          );
+          tl.to(`${id} .glow`, { opacity: 1, duration: 0.4, ease: "power2.out" }, t);
+          tl.to(`${id} .glow`, { opacity: 0.45, duration: 0.5, ease: "power2.inOut" }, t + 0.4);
+          tl.fromTo(
+            `${id} .label`,
+            { y: 16, opacity: 0 },
+            { y: 0, opacity: 1, duration: 0.5, ease: "power3.out" },
+            t + 0.15,
+          );
+        };
+
+        ignite("#s2b-cp-0", 1.1);
+        ignite("#s2b-cp-7", 2.0);
+        ignite("#s2b-cp-10", 2.9);
+        ignite("#s2b-cp-17", 3.8);
+
+        // Brighten the axis now that all checkpoints are lit
+        tl.to("#s2b-axis", { backgroundColor: "#e8904a", opacity: 0.75, duration: 0.5, ease: "power2.inOut" }, 4.3);
+
+        // Tagline
+        tl.from("#s2b-tagline", { y: 28, opacity: 0, duration: 0.7, ease: "power3.out" }, 4.7);
+
+        // Hold through scene end
+        tl.to("#s2b-tagline", { opacity: 1, duration: 0.01 }, 5.99);
+
+        window.__timelines["act2b-switch"] = tl;
+      })();
+    </script>
+  </div>
+</template>

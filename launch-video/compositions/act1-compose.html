@@ -1,0 +1,251 @@
+<template id="act1-compose-template">
+  <div data-composition-id="act1-compose" data-start="0" data-duration="7" data-width="1920" data-height="1080">
+    <div class="scene-content">
+      <!-- Compose window, editorial email client look -->
+      <div class="window" id="s1-window">
+        <div class="titlebar">
+          <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+          <span class="title-text">New message</span>
+        </div>
+        <div class="row">
+          <span class="field">To</span>
+          <span class="value" id="s1-to">hr@company.com</span>
+        </div>
+        <div class="row">
+          <span class="field">Subject</span>
+          <span class="value subject" id="s1-subject"></span>
+          <span class="caret" id="s1-caret-1">▍</span>
+        </div>
+        <div class="body">
+          <span class="body-text" id="s1-body"></span><span class="caret" id="s1-caret-2">▍</span>
+        </div>
+        <div class="action-bar">
+          <div class="send-btn" id="s1-send">Send</div>
+        </div>
+      </div>
+
+      <!-- Reveal: the recipient is inside the reporting line -->
+      <div class="reveal" id="s1-reveal">
+        <div class="reveal-arrow">
+          <svg viewBox="0 0 800 60" width="800" height="60" preserveAspectRatio="none">
+            <line x1="0" y1="30" x2="770" y2="30" stroke="#e8904a" stroke-width="1.5"
+              stroke-dasharray="800" stroke-dashoffset="800" id="s1-reveal-line" />
+            <polyline points="762,22 780,30 762,38" fill="none" stroke="#e8904a" stroke-width="1.5" id="s1-reveal-head" opacity="0" />
+          </svg>
+        </div>
+        <div class="reveal-label" id="s1-reveal-label">
+          <div class="reveal-meta">DELIVERED TO</div>
+          <div class="reveal-name">The accused&rsquo;s manager.</div>
+        </div>
+      </div>
+
+      <div class="caption" id="s1-caption">The complaint goes to the people it&rsquo;s about.</div>
+    </div>
+
+    <style>
+      [data-composition-id="act1-compose"] {
+        width: 100%;
+        height: 100%;
+        background: #0b0b0e;
+        color: #f5f1ea;
+        font-family: "Inter", sans-serif;
+        position: relative;
+        overflow: hidden;
+      }
+      [data-composition-id="act1-compose"] .scene-content {
+        position: relative;
+        width: 100%;
+        height: 100%;
+      }
+      [data-composition-id="act1-compose"] .window {
+        position: absolute;
+        left: 140px;
+        top: 140px;
+        width: 1100px;
+        background: #14141a;
+        border: 1px solid #1f1d1a;
+        border-radius: 6px;
+        box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+        overflow: hidden;
+      }
+      [data-composition-id="act1-compose"] .titlebar {
+        padding: 16px 20px;
+        border-bottom: 1px solid #1f1d1a;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      [data-composition-id="act1-compose"] .dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: #3a3430;
+      }
+      [data-composition-id="act1-compose"] .title-text {
+        margin-left: 16px;
+        font-family: "JetBrains Mono", ui-monospace, monospace;
+        font-size: 18px;
+        color: #6b6760;
+        letter-spacing: 0.06em;
+      }
+      [data-composition-id="act1-compose"] .row {
+        padding: 24px 32px;
+        border-bottom: 1px solid #1f1d1a;
+        display: flex;
+        align-items: baseline;
+        gap: 20px;
+        min-height: 60px;
+      }
+      [data-composition-id="act1-compose"] .field {
+        font-family: "JetBrains Mono", ui-monospace, monospace;
+        font-size: 22px;
+        color: #6b6760;
+        letter-spacing: 0.12em;
+        width: 120px;
+      }
+      [data-composition-id="act1-compose"] .value {
+        font-family: "Inter", sans-serif;
+        font-size: 32px;
+        color: #f5f1ea;
+        font-weight: 400;
+      }
+      [data-composition-id="act1-compose"] .body {
+        padding: 32px;
+        min-height: 220px;
+        position: relative;
+      }
+      [data-composition-id="act1-compose"] .body-text {
+        font-family: "Fraunces", serif;
+        font-size: 44px;
+        line-height: 1.35;
+        color: #f5f1ea;
+        font-weight: 400;
+      }
+      [data-composition-id="act1-compose"] .caret {
+        display: inline-block;
+        color: #e8904a;
+        font-family: "JetBrains Mono", monospace;
+        animation: s1-blink 0.85s steps(2) infinite;
+        vertical-align: baseline;
+      }
+      @keyframes s1-blink {
+        0%, 100% { opacity: 1; }
+        50%      { opacity: 0; }
+      }
+      [data-composition-id="act1-compose"] .action-bar {
+        padding: 20px 32px;
+        border-top: 1px solid #1f1d1a;
+        display: flex;
+        justify-content: flex-end;
+      }
+      [data-composition-id="act1-compose"] .send-btn {
+        padding: 16px 40px;
+        background: #e8904a;
+        color: #0b0b0e;
+        font-family: "Inter", sans-serif;
+        font-weight: 600;
+        font-size: 22px;
+        letter-spacing: 0.04em;
+        border-radius: 3px;
+      }
+
+      [data-composition-id="act1-compose"] .reveal {
+        position: absolute;
+        left: 140px;
+        top: 820px;
+        display: flex;
+        align-items: center;
+        gap: 32px;
+        opacity: 0;
+      }
+      [data-composition-id="act1-compose"] .reveal-arrow {
+        width: 800px;
+      }
+      [data-composition-id="act1-compose"] .reveal-label {
+        position: absolute;
+        left: 760px;
+        top: -8px;
+        white-space: nowrap;
+      }
+      [data-composition-id="act1-compose"] .reveal-meta {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 16px;
+        letter-spacing: 0.16em;
+        color: #8a5428;
+        margin-bottom: 6px;
+      }
+      [data-composition-id="act1-compose"] .reveal-name {
+        font-family: "Fraunces", serif;
+        font-style: italic;
+        font-size: 46px;
+        color: #f5f1ea;
+        letter-spacing: -0.01em;
+        white-space: nowrap;
+      }
+
+      [data-composition-id="act1-compose"] .caption {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 80px;
+        text-align: center;
+        font-family: "Fraunces", serif;
+        font-style: italic;
+        font-weight: 500;
+        font-size: 40px;
+        color: #e8904a;
+        letter-spacing: -0.005em;
+        opacity: 0;
+      }
+    </style>
+
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <script>
+      window.__timelines = window.__timelines || {};
+      (function () {
+        const tl = gsap.timeline({ paused: true });
+
+        // Typewriter helper — reveals text char-by-char
+        function typewriter(selector, text, startAt, duration) {
+          const el = document.querySelector(selector);
+          if (!el) return;
+          const chars = text.split("");
+          chars.forEach((ch, i) => {
+            tl.call(() => { el.textContent = chars.slice(0, i + 1).join(""); },
+              null, startAt + (duration * i) / chars.length);
+          });
+        }
+
+        // Window fades in
+        tl.from("#s1-window", { y: 30, opacity: 0, duration: 0.6, ease: "power3.out" }, 0.2);
+
+        // Subject typing
+        tl.set("#s1-caret-1", { opacity: 1 }, 0.9);
+        typewriter("#s1-subject", "Something happened at work", 1.0, 1.3);
+        tl.to("#s1-caret-1", { opacity: 0, duration: 0.1 }, 2.3);
+
+        // Body typing — one hesitant line
+        tl.set("#s1-caret-2", { opacity: 1 }, 2.4);
+        typewriter("#s1-body", "I don\u2019t know who else to tell.", 2.5, 1.4);
+
+        // Press Send (pulse + dim caret)
+        tl.to("#s1-send", { scale: 0.95, duration: 0.08, ease: "power2.out" }, 4.2);
+        tl.to("#s1-send", { scale: 1, duration: 0.18, ease: "power2.out" }, 4.3);
+        tl.to("#s1-caret-2", { opacity: 0, duration: 0.2 }, 4.2);
+
+        // Reveal the routing: arrow draws from compose window down-right to "the accused's manager"
+        tl.to("#s1-reveal", { opacity: 1, duration: 0.35, ease: "power2.out" }, 4.6);
+        tl.to("#s1-reveal-line", { strokeDashoffset: 0, duration: 0.85, ease: "power2.inOut" }, 4.7);
+        tl.to("#s1-reveal-head", { opacity: 1, duration: 0.2 }, 5.5);
+
+        // Caption lands last
+        tl.to("#s1-caption", { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" }, 5.6);
+
+        // Hold through scene end
+        tl.to("#s1-caption", { opacity: 1, duration: 0.01 }, 6.99);
+
+        window.__timelines["act1-compose"] = tl;
+      })();
+    </script>
+  </div>
+</template>
