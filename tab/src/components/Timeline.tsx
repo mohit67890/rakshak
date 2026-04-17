@@ -32,6 +32,8 @@ const ACTION_LABELS: Record<string, string> = {
   escalated_audit_committee: "Escalated to Audit Committee",
   escalated_district_officer: "Escalated to District Officer",
   inquiry_deadline_breached: "90-day inquiry deadline breached",
+  appealed: "Complainant appealed to higher authority",
+  appeal_reviewed: "Appeal reviewed",
 };
 
 function getIcon(action: string) {
@@ -43,6 +45,7 @@ function getIcon(action: string) {
     case "escalated_audit_committee":
     case "escalated_district_officer":
     case "inquiry_deadline_breached":
+    case "appealed":
       return <Warning24Filled className={`${base} text-red-500`} />;
     case "submitted":
     case "acknowledged":

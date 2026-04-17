@@ -21,6 +21,7 @@ import { Timeline } from "../components/Timeline";
 import { Loading } from "../components/Loading";
 import { ErrorBanner } from "../components/ErrorBanner";
 import { Comments } from "../components/Comments";
+import { AppealPanel } from "../components/AppealPanel";
 
 export function ComplaintDetail() {
   const { complaintId } = useParams<{ complaintId: string }>();
@@ -277,6 +278,22 @@ export function ComplaintDetail() {
           </p>
         </Section>
       )}
+
+      {/* Appeal — only visible to the complainant themselves, after submission */}
+      {user &&
+        user.role === "employee" &&
+        complaint.complainantId === user.userId &&
+        complaint.status !== "draft" && (
+          <Section title="Appeal">
+            <AppealPanel
+              complaint={complaint}
+              userId={user.userId}
+              onAppealed={(updates) =>
+                setComplaint((prev) => (prev ? { ...prev, ...updates } : prev))
+              }
+            />
+          </Section>
+        )}
 
       {/* Comments */}
       {complaint.status !== "draft" && user && (

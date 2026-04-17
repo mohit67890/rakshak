@@ -42,6 +42,14 @@ export interface Complaint {
   resolvedAt: string | null;
   resolution: string | null;
 
+  // Complainant-initiated appeal to higher authority
+  appealStatus?: "none" | "pending" | "under_review" | "upheld" | "rejected";
+  appealedAt?: string | null;
+  appealReason?: string | null;
+  appealedToLevel?: number | null;
+  appealReviewedAt?: string | null;
+  appealOutcome?: string | null;
+
   conversationId: string;
   complaintPdfUrl: string | null;
 
@@ -82,6 +90,8 @@ export type AuditAction =
   | "escalated_district_officer"
   | "inquiry_deadline_breached"
   | "resolved"
+  | "appealed"
+  | "appeal_reviewed"
   | "annual_report_generated";
 
 export type AuditRole = "employee" | "icc" | "admin" | "system";

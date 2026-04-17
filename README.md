@@ -2,11 +2,11 @@
   <img src="rakshak_logo.png" alt="Rakshak" width="140" />
 </p>
 
-<h1 align="center">Rakshak</h1>
+<h1 align="center">Rakshak — AI-Powered POSH Bot for Microsoft Teams</h1>
 
 <p align="center">
   <strong>रक्षक · "protector" in Sanskrit</strong><br>
-  The AI-powered POSH workplace safety bot for Microsoft Teams.
+  Open-source workplace-harassment reporting, POSH Act 2013 compliant, built for Microsoft Teams.
 </p>
 
 <p align="center">
@@ -37,6 +37,12 @@
   <a href="#security--compliance">Security</a> ·
   <a href="#quick-start">Quick Start</a> ·
   <a href="#for-enterprises">For Enterprises</a>
+</p>
+
+---
+
+<p align="center">
+  <sub><strong>Keywords:</strong> POSH Act 2013 · POSH compliance software · workplace sexual harassment reporting · Internal Complaints Committee (ICC) · Microsoft Teams bot · whistleblower platform · vigil mechanism · Companies Act §177 · Companies (Accounts) Rules 2025 · DPDPA 2023 · Bharatiya Nyaya Sanhita §§74–79 · SHe-Box · India HR tech · open source</sub>
 </p>
 
 ---
@@ -106,6 +112,8 @@ Each step checks whether the ICC has already acted — if they have, the chain t
 
 Separately, the **90-day inquiry deadline** (POSH Act, Section 11) is monitored from the moment the ICC acknowledges, with reminders at configurable intervals. A **daily safety-net cron** catches any complaint whose orchestration was lost to a restart — belt and suspenders.
 
+**Complainant-initiated appeal.** The dead man's switch is automatic. But the complainant can also **manually appeal** at any eligible moment — unfavourable resolution, missed acknowledgement deadline, or breached inquiry window — and escalate directly to the Audit Committee or District Officer, with a reason that is logged to the immutable audit trail. See [docs/APPEAL.md](docs/APPEAL.md).
+
 See [docs/ESCALATION.md](docs/ESCALATION.md) for the full technical breakdown.
 
 ---
@@ -136,6 +144,7 @@ Rakshak handles the most sensitive data an organisation touches. Security isn&rs
 - **Evidence upload.** Share screenshots, emails, documents in the chat or via the dashboard.
 - **Real-time status tracking.** Check complaint status anytime via bot or the Dashboard tab.
 - **Criminal-threshold detection.** If the incident crosses into criminal territory (Bharatiya Nyaya Sanhita §§ 74–79), the bot flags it for law-enforcement referral.
+- **Right to appeal.** If the ICC&rsquo;s resolution is unsatisfactory, deadlines are missed, or the inquiry breaches 90 days, the complainant can formally appeal to the Audit Committee (Companies Act §177) or District Officer (POSH Act §6), with the reason captured and logged. Parallel statutory rights — police FIR (POSH §19 employer-assistance obligation), court appeal (POSH §18, 90-day window), and the government SHe-Box portal — are surfaced at every step. See [docs/APPEAL.md](docs/APPEAL.md).
 
 ### For the ICC
 - **Role-based dashboard** showing all complaints, timelines, and pending actions.

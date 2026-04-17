@@ -45,6 +45,14 @@ export interface Complaint {
   complaintPdfUrl: string | null;
   createdAt: string;
   updatedAt: string;
+
+  // Appeal (complainant-initiated escalation to higher authority)
+  appealStatus?: "none" | "pending" | "under_review" | "upheld" | "rejected";
+  appealedAt?: string | null;
+  appealReason?: string | null;
+  appealedToLevel?: number | null;
+  appealReviewedAt?: string | null;
+  appealOutcome?: string | null;
 }
 
 export interface AuditEntry {
@@ -165,6 +173,44 @@ export async function resolveComplaint(
     status: "resolved",
     resolution,
   });
+}
+
+// ============================================================================
+// Appeal
+// ============================================================================
+
+export interface AppealResult {
+  success: boolean;
+  complaintId: string;
+  appealStatus: "pending";
+  appealedToLevel: 1 | 2;
+  appealedAt: string;
+}
+
+/**
+ * Complainant files a formal appeal to a higher authority.
+ * targetLevel: 1 = Audit Committee, 2 = District Officer
+ */
+export async function appealComplaint(
+  complaintId: string,
+  tenantId: string,
+  userId: string,
+  targetLevel: 1 | 2,
+  reason: string,
+): Promise<AppealResult> {
+  const res = await fetch(
+    `${API_BASE}/complaints/${encodeURIComponent(complaintId)}/appeal`,
+    {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ tenantId, userId, targetLevel, reason }),
+    },
+  );
+  if (!res.ok) {
+    const body = await res.json().catch(() => ({ error: res.statusText }));
+    throw new Error(body.error ?? `HTTP ${res.status}`);
+  }
+  return res.json() as Promise<AppealResult>;
 }
 
 /** Upload an evidence file to a complaint */

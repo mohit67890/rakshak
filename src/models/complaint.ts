@@ -75,6 +75,15 @@ export interface Complaint extends BaseDocument {
   resolvedAt: string | null;
   resolution: string | null;
 
+  // Complainant-initiated appeal to higher authority
+  // (separate from system-driven auto-escalation on ICC inaction)
+  appealStatus: "none" | "pending" | "under_review" | "upheld" | "rejected";
+  appealedAt: string | null;
+  appealReason: string | null;
+  appealedToLevel: number | null; // 1=Audit Committee, 2=District Officer
+  appealReviewedAt: string | null;
+  appealOutcome: string | null;
+
   // Conversation
   conversationId: string;
   complaintPdfUrl: string | null;

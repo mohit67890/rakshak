@@ -31,3 +31,4 @@ import "./functions/httpTriggers/getIccDashboard";
 import "./functions/httpTriggers/getUserRole";
 import "./functions/httpTriggers/uploadEvidence";
 import "./functions/httpTriggers/comments";
+import "./functions/httpTriggers/appealComplaint";

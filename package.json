@@ -1,7 +1,35 @@
 {
     "name": "rakshak",
     "version": "1.0.0",
-    "description": "Rakshak — AI-Powered POSH Workplace Safety Bot for Microsoft Teams",
+    "description": "Rakshak — AI-powered POSH workplace-harassment reporting bot for Microsoft Teams. POSH Act 2013, Companies (Accounts) Rules 2025, and DPDPA 2023 compliant. Open source.",
+    "keywords": [
+        "posh",
+        "posh-act",
+        "posh-compliance",
+        "workplace-harassment",
+        "sexual-harassment",
+        "internal-complaints-committee",
+        "icc",
+        "whistleblower",
+        "vigil-mechanism",
+        "grievance-redressal",
+        "microsoft-teams",
+        "teams-bot",
+        "bot-framework",
+        "azure-functions",
+        "durable-functions",
+        "azure-openai",
+        "cosmos-db",
+        "dpdpa",
+        "india",
+        "hr-tech",
+        "companies-act",
+        "typescript"
+    ],
+    "homepage": "https://github.com/mohit67890/rakshak#readme",
+    "bugs": {
+        "url": "https://github.com/mohit67890/rakshak/issues"
+    },
     "author": "Mohit Garg <mohit@datapuls.ai>",
     "license": "MIT",
     "main": "./dist/index.js",
@@ -19,7 +47,7 @@
     },
     "repository": {
         "type": "git",
-        "url": "https://github.com"
+        "url": "git+https://github.com/mohit67890/rakshak.git"
     },
     "dependencies": {
         "@azure/cosmos": "^4.2.0",

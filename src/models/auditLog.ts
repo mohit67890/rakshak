@@ -24,6 +24,8 @@ export type AuditAction =
   | "escalated_district_officer"
   | "inquiry_deadline_breached"
   | "resolved"
+  | "appealed"
+  | "appeal_reviewed"
   | "annual_report_generated";
 
 export type AuditRole = "employee" | "icc" | "admin" | "system";

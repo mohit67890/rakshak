@@ -264,6 +264,55 @@
         }
       },
 
+      "complaint_appealed_audit_committee": {
+        "description": "Complainant has appealed the complaint to the Audit Committee",
+        "recipients": [
+          { "audience": "escalation_contacts_level_1", "channel": "email" },
+          { "audience": "icc_presiding_officer", "channel": "email" },
+          { "audience": "complainant", "channel": "bot" }
+        ],
+        "templates": {
+          "escalation_contacts_level_1": {
+            "subject": "[Rakshak] APPEAL: POSH Complaint {{complaintNumber}} — Complainant Has Appealed",
+            "body": "The complainant in POSH complaint {{complaintNumber}} has filed a formal appeal to the Audit Committee.\n\nReason for appeal (in complainant's words):\n\"{{appealReason}}\"\n\nCurrent complaint status: {{currentStatus}}\nSubmitted on: {{submittedDate}}\n\nPer Section 177(9-10) of the Companies Act, 2013 and the organization's vigil mechanism, the Audit Committee is requested to review the handling of this complaint and take appropriate action.\n\nThis appeal has been logged in the tamper-proof audit trail."
+          },
+          "icc_presiding_officer": {
+            "subject": "[Rakshak] NOTICE: Complainant Appealed Complaint {{complaintNumber}} to Audit Committee",
+            "body": "The complainant in complaint {{complaintNumber}} has filed an appeal to the Audit Committee.\n\nReason provided: \"{{appealReason}}\"\n\nPlease cooperate with the Audit Committee's review. This appeal has been logged."
+          },
+          "complainant": {
+            "message": "Your appeal to the **Audit Committee** for complaint ({{complaintNumber}}) has been filed successfully.\n\nThe Audit Committee has been notified along with the reason you provided. Your appeal has been logged in the tamper-proof audit trail. You'll be notified when they respond."
+          }
+        }
+      },
+
+      "complaint_appealed_district_officer": {
+        "description": "Complainant has appealed the complaint to the District Officer",
+        "recipients": [
+          { "audience": "escalation_contacts_level_2", "channel": "email" },
+          { "audience": "nodal_officer", "channel": "email" },
+          { "audience": "icc_presiding_officer", "channel": "email" },
+          { "audience": "complainant", "channel": "bot" }
+        ],
+        "templates": {
+          "escalation_contacts_level_2": {
+            "subject": "[Rakshak] APPEAL: POSH Complaint {{complaintNumber}} — Complainant Appealed to District Officer",
+            "body": "The complainant in POSH complaint {{complaintNumber}} has filed a formal appeal to the District Officer.\n\nReason for appeal (in complainant's words):\n\"{{appealReason}}\"\n\nCurrent complaint status: {{currentStatus}}\nSubmitted on: {{submittedDate}}\n\nPer Section 6 of the POSH Act, 2013, the District Officer is requested to review the handling of this complaint and take appropriate action, which may include constituting a Local Complaints Committee.\n\nThis appeal has been logged in the tamper-proof audit trail."
+          },
+          "nodal_officer": {
+            "subject": "[Rakshak] APPEAL: Complaint {{complaintNumber}} — District Officer Notification",
+            "body": "POSH complaint {{complaintNumber}} has been appealed by the complainant to the District Officer. This notification is sent to the Nodal Officer for SHe-Box compliance tracking.\n\nReason: \"{{appealReason}}\""
+          },
+          "icc_presiding_officer": {
+            "subject": "[Rakshak] NOTICE: Complainant Appealed Complaint {{complaintNumber}} to District Officer",
+            "body": "The complainant in complaint {{complaintNumber}} has filed an appeal directly to the District Officer.\n\nReason provided: \"{{appealReason}}\"\n\nThis appeal has been logged."
+          },
+          "complainant": {
+            "message": "Your appeal to the **District Officer** for complaint ({{complaintNumber}}) has been filed successfully.\n\nThe District Officer (and Nodal Officer) has been notified along with the reason you provided. Your appeal has been logged in the tamper-proof audit trail. You'll be notified when they respond.\n\nYou also retain the right to approach the courts directly under Section 18 of the POSH Act."
+          }
+        }
+      },
+
       "criminal_threshold_alert": {
         "description": "Complaint crosses from POSH (civil) into BNS (criminal) territory",
         "recipients": [

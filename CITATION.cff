@@ -1,0 +1,32 @@
+cff-version: 1.2.0
+message: "If you use Rakshak in research, compliance tooling, or derivative work, please cite it as below."
+title: "Rakshak: AI-Powered POSH Workplace Safety Bot for Microsoft Teams"
+abstract: >
+  Rakshak is an open-source Microsoft Teams bot and tab application that enables
+  employees in Indian workplaces to report sexual harassment through an empathetic,
+  AI-guided conversation. It auto-generates legally structured complaints under the
+  Prevention of Sexual Harassment (POSH) Act, 2013, routes them to the Internal
+  Complaints Committee, and automatically escalates to the Audit Committee
+  (Companies Act, 2013 §177) and District Officer (POSH Act §6) if deadlines are
+  missed. The system is compliant with the Companies (Accounts) Second Amendment
+  Rules, 2025 and the Digital Personal Data Protection Act, 2023.
+type: software
+authors:
+  - given-names: Mohit
+    family-names: Garg
+    email: mohit@datapuls.ai
+repository-code: "https://github.com/mohit67890/rakshak"
+url: "https://github.com/mohit67890/rakshak"
+license: MIT
+keywords:
+  - POSH Act 2013
+  - workplace harassment
+  - Internal Complaints Committee
+  - Microsoft Teams bot
+  - whistleblower platform
+  - vigil mechanism
+  - Companies Act 2013
+  - DPDPA 2023
+  - Bharatiya Nyaya Sanhita
+  - India HR compliance
+  - open source
