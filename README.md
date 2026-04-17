@@ -56,7 +56,7 @@ Under India&rsquo;s POSH Act, every company with 10+ employees must run an Inter
 Three converging pressures make this the wrong year to still be using a web form:
 
 1. **Companies (Accounts) Second Amendment Rules, 2025** (effective July 14, 2025) now require the Board&rsquo;s Report to disclose POSH complaints received, resolved, and pending beyond 90 days. **Every listed company and large private company is now publicly accountable for these numbers.** Rakshak produces them automatically.
-2. **The TCS Nashik case (April 2026)** — eight women harassed for four years while the HR head suppressed complaints — is the most visible failure of the status quo, but it is not unique. Every HR-routed intake has this structural weakness.
+2. **High-profile workplace-harassment failures reported in 2025–26** — multi-year patterns in major Indian employers where HR leaders allegedly suppressed repeated complaints — have made it clear that HR-routed intake has a structural weakness: the channel is owned by people with a conflict of interest.
 3. **Board-level liability** under Section 177 of the Companies Act makes the Audit Committee responsible for vigil mechanisms. Boards that don&rsquo;t act on escalated complaints inherit the risk personally.
 
 If you&rsquo;re a Board, a CHRO, or a compliance officer, the question is no longer *&ldquo;should we digitise POSH?&rdquo;* — it&rsquo;s *&ldquo;will our current process survive audit and disclosure?&rdquo;*
